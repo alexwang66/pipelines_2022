@@ -6,73 +6,73 @@ resources:
       path: alexwang66/pipelines_2022
       branches:
         include: master
-  - name: DockerAppImage
-    type: Image
-    configuration:
-      registry: artifactory
-      sourceRepository: docker
-      imageName: docker.artifactory-unified.soleng-us.jfrog.team/swampup_docker_app_demo
-      imageTag: '${run_number}'
-      autoPull: true
-  - name: myBuildInfo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: artifactory
-      buildName: SampleApp
-      buildNumber: 1
-  - name: myPromotedBuildInfo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: artifactory
-      buildName: SampleApp
-      buildNumber: 1
-  - name: myHelmBuildInfo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: artifactory
-      buildName: SampleApp
-      buildNumber: 1
-  - name: myPromotedHelmBuildInfo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: artifactory
-      buildName: SampleApp
-      buildNumber: 1
-  - name: MyHelmChart
-    type: HelmChart
-    configuration:
-      sourceArtifactory: artifactory
-      repository: helm-local
-      chart: docker-app-chart
-      version: '0.1.${run_number}'
-  - name: MyPromotedHelmChart
-    type: HelmChart
-    configuration:
-      sourceArtifactory: artifactory
-      repository: helm-prod-local
-      chart: docker-app-chart
-      version: '0.1.${run_number}'
-  - name: myReleaseBundle
-    type: ReleaseBundle
-    configuration:
-      sourceDistribution: Distribution
-      name: swampup_rb
-      version: v1.0.0
-  - name: mySignedReleaseBundle
-    type: ReleaseBundle
-    configuration:
-      sourceDistribution: Distribution
-      name: swampup_rb
-      version: v1.0.0
-  - name: myDistributionRules
-    type: DistributionRule
-    configuration:
-      sourceDistribution: Distribution
-      serviceName: "Edge*"
-      siteName: "Edge*"
-      cityName: "*"
-      countryCodes:
-        - "*"
+#   - name: DockerAppImage
+#     type: Image
+#     configuration:
+#       registry: artifactory
+#       sourceRepository: docker
+#       imageName: docker.artifactory-unified.soleng-us.jfrog.team/swampup_docker_app_demo
+#       imageTag: '${run_number}'
+#       autoPull: true
+#   - name: myBuildInfo
+#     type: BuildInfo
+#     configuration:
+#       sourceArtifactory: artifactory
+#       buildName: SampleApp
+#       buildNumber: 1
+#   - name: myPromotedBuildInfo
+#     type: BuildInfo
+#     configuration:
+#       sourceArtifactory: artifactory
+#       buildName: SampleApp
+#       buildNumber: 1
+#   - name: myHelmBuildInfo
+#     type: BuildInfo
+#     configuration:
+#       sourceArtifactory: artifactory
+#       buildName: SampleApp
+#       buildNumber: 1
+#   - name: myPromotedHelmBuildInfo
+#     type: BuildInfo
+#     configuration:
+#       sourceArtifactory: artifactory
+#       buildName: SampleApp
+#       buildNumber: 1
+#   - name: MyHelmChart
+#     type: HelmChart
+#     configuration:
+#       sourceArtifactory: artifactory
+#       repository: helm-local
+#       chart: docker-app-chart
+#       version: '0.1.${run_number}'
+#   - name: MyPromotedHelmChart
+#     type: HelmChart
+#     configuration:
+#       sourceArtifactory: artifactory
+#       repository: helm-prod-local
+#       chart: docker-app-chart
+#       version: '0.1.${run_number}'
+#   - name: myReleaseBundle
+#     type: ReleaseBundle
+#     configuration:
+#       sourceDistribution: Distribution
+#       name: swampup_rb
+#       version: v1.0.0
+#   - name: mySignedReleaseBundle
+#     type: ReleaseBundle
+#     configuration:
+#       sourceDistribution: Distribution
+#       name: swampup_rb
+#       version: v1.0.0
+#   - name: myDistributionRules
+#     type: DistributionRule
+#     configuration:
+#       sourceDistribution: Distribution
+#       serviceName: "Edge*"
+#       siteName: "Edge*"
+#       cityName: "*"
+#       countryCodes:
+#         - "*"
 pipelines:
   - name: swampup_docker_app_pipeline
     configuration:
@@ -116,7 +116,7 @@ pipelines:
         configuration:
           npmArgs: --no-progress --no-audit
           sourceLocation: npm-frontend-service
-          repositoryName: npm
+          repositoryName: alex-npm
           inputResources:
             - name: myGitRepo
               trigger: false
