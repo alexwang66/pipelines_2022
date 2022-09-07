@@ -74,7 +74,7 @@ resources:
 #       countryCodes:
 #         - "*"
 pipelines:
-  - name: swampup_docker_app_pipeline
+  - name: docker_app_pipeline
     configuration:
       environmentVariables:
         readOnly:
