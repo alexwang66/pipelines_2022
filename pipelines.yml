@@ -1,5 +1,5 @@
 resources:
-  - name: myGitRepo
+  - name: alex_github
     type: GitRepo
     configuration:
       gitProvider: alex_github
@@ -90,7 +90,7 @@ pipelines:
 #           configFileLocation: .
 #           configFileName: mvn-art-config
 #           inputResources:
-#             - name: myGitRepo
+#             - name: alex_github
 #               trigger: false
 #           integrations:
 #             - name: artifactory
@@ -106,8 +106,8 @@ pipelines:
 #             - javac -version
 #             - mvn --version
 #             - add_pipeline_variables previous_backend_ver=${my_env_var}
-#             - sed -ie 's/Default-Server/artifactory/g' $res_myGitRepo_resourcePath/java-backend-service/mvn-art-config
-#             - sed -ie "s/1.0.0/$my_env_var/g" $res_myGitRepo_resourcePath/java-backend-service/pom.xml
+#             - sed -ie 's/Default-Server/artifactory/g' $res_alex_github_resourcePath/java-backend-service/mvn-art-config
+#             - sed -ie "s/1.0.0/$my_env_var/g" $res_alex_github_resourcePath/java-backend-service/pom.xml
 #           onComplete:
 #             - echo $run_var
 #             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
@@ -118,14 +118,14 @@ pipelines:
           sourceLocation: npm-frontend-service
           repositoryName: alex-npm
           inputResources:
-            - name: myGitRepo
+            - name: alex_github
               trigger: false
           integrations:
             - name: artifactory
         execution:
           onStart:
             - add_pipeline_variables previous_frontend_ver=${my_env_var}
-            - sed -i "s/3.0.0/$my_env_var/g" $res_myGitRepo_resourcePath/npm-frontend-service/package.json     
+            - sed -i "s/3.0.0/$my_env_var/g" $res_alex_github_resourcePath/npm-frontend-service/package.json     
 #       - name: publish_frontend
 #         type: NpmPublish
 #         configuration:
@@ -145,7 +145,7 @@ pipelines:
 #           integrations:
 #             - name: artifactory
 #           inputResources:
-#             - name: myGitRepo
+#             - name: alex_github
 #               trigger: false
 #           outputResources:
 #             - name: DockerAppImage
@@ -154,10 +154,10 @@ pipelines:
 #             - name: publish_frontend #bld_frontend
 #         execution:
 #           onStart:
-#             - sed -i "s/docker.artifactory/docker.${ArtIP}/" $res_myGitRepo_resourcePath/Dockerfile
-#             - sed -i "s/artifactory-unified.soleng-us.jfrog.team/${ArtIP}/" $res_myGitRepo_resourcePath/Dockerfile
-#             - sed -i "s/frontend-3.0.0/frontend-$previous_frontend_ver/g" $res_myGitRepo_resourcePath/Dockerfile
-#             - sed -i "s/1.0.0/$previous_backend_ver/g" $res_myGitRepo_resourcePath/Dockerfile
+#             - sed -i "s/docker.artifactory/docker.${ArtIP}/" $res_alex_github_resourcePath/Dockerfile
+#             - sed -i "s/artifactory-unified.soleng-us.jfrog.team/${ArtIP}/" $res_alex_github_resourcePath/Dockerfile
+#             - sed -i "s/frontend-3.0.0/frontend-$previous_frontend_ver/g" $res_alex_github_resourcePath/Dockerfile
+#             - sed -i "s/1.0.0/$previous_backend_ver/g" $res_alex_github_resourcePath/Dockerfile
 #           onComplete:
 #             - echo $step_env_var2
 #             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
@@ -183,7 +183,7 @@ pipelines:
 #           chartPath: docker-app-chart/
 #           autoPublishBuildInfo: true        
 #           inputResources:
-#             - name: myGitRepo
+#             - name: alex_github
 #               trigger: false
 #             - name: myBuildInfo
 #           outputResources:
@@ -191,7 +191,7 @@ pipelines:
 #             - name: myHelmBuildInfo
 #         execution:
 #           onStart:
-#             - pushd $res_myGitRepo_resourcePath/docker-app-chart
+#             - pushd $res_alex_github_resourcePath/docker-app-chart
 #             - add_pipeline_variables triggerBuildInfoName="${res_myBuildInfo_buildName}"
 #             - add_pipeline_variables triggerBuildInfoNumber="${res_myBuildInfo_buildNumber}"
 #             - sed -i "s/docker.artifactory/docker.artifactory-unified.soleng-us.jfrog.team/" values.yaml
