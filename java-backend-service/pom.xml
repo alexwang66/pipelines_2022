@@ -109,14 +109,7 @@
 								<envVarsExcludePatterns>*password*,*secret*,*key*,*token*,*passphrase*</envVarsExcludePatterns>
 								<timeoutSec>60</timeoutSec>
 							</artifactory>
-							<publisher>
-								<contextUrl>${artifactoryUrl}</contextUrl>
-								<username>${username}</username>
-								<password>${password}</password>
-								<excludePatterns>*-tests.jar</excludePatterns>
-								<repoKey>libs-release-local</repoKey>
-								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
-							</publisher>
+							
 							<buildInfo>
 								<buildName>plugin-demo</buildName>
 								<buildNumber>${buildnumber}</buildNumber>
